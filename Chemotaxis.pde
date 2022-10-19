@@ -1,40 +1,37 @@
-Walker bob;
-Walker [] hillbillies = {new Walker(), new Walker(), new Walker()}; //not good way since tedious. initialization and declaration are in same line
-Walker [] saviors;
-
+Bacteria [] saviors;
+int num = 100;
 void setup()
 {
   size(500, 500);
-  bob = new Walker();
-  saviors = new Walker[1000]; //creates empty apartments with no residents
+  
+  saviors = new Bacteria[num]; //creates empty apartments with no residents
   int i = 0;
   while (i < saviors.length) {
-    saviors[i] = new Walker(); //creates actual walkers
+    saviors[i] = new Bacteria(); //creates actual bacteria
     i++;
   }
+  
 }
+void mousePressed()
+  {
+    num += 10;
+  }
 void draw()
 {
   //background(0);
-  bob.show();
-  bob.walk();
-  hillbillies[0].walk();
-  hillbillies[0].show();
-  hillbillies[1].walk();
-  hillbillies[1].show();
-  hillbillies[2].walk();
-  hillbillies[2].show();
+  
   for (int i = 0; i< saviors.length; i++) {
     saviors[i].walk();
     saviors[i].show();
   }
 }
-class Walker
+class Bacteria
 {
-  int myX, myY;
-  Walker()
+  int myX, myY, myColor;
+  Bacteria()
   {
     myX = myY = 250;
+    myColor = color(200,0,0);
   }
   void walk()
   {
@@ -43,6 +40,8 @@ class Walker
   }
   void show()
   {
+    fill(myColor);
     ellipse(myX, myY, 30, 30);
   }
+  
 }
